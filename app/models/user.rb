@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :full_name, :role, :points, :password, :password_confirmation
+  attr_accessible :username, :full_name, :password, :password_confirmation
   attr_accessor :password
   before_save :set_defaults_and_password
 
-  User_Roles = { :admin => 'chocolate', :standard => 'vanilla' }
+  User_Roles = { :admin => 'choco', :standard => 'vanilla' }
 
   validates_uniqueness_of :username, :case_sensitive => false
   validates_length_of :username, :within => 3..256
