@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
+  before_filter :login_required  
   helper_method :current_user
 
   private
@@ -20,17 +20,17 @@ class ApplicationController < ActionController::Base
   end
 
   def login_required
-    if session[:user_id].present? then true end
+    if session[:user_id].present? then return true end
     flash.now[:alert] = 'You gotta log in for that, buddy...'
-    session[:return_to] = request.request_uri
+    session[:return_to] = request.url
     redirect_to login_path
-    false
+    return false
   end
 
   def redirect_to_stored
     if return_to = session[:return_to]
       session[:return_to] = nil
-      redirect_to_url return_to
+      redirect_to return_to
     else
       redirect_to root_path
     end

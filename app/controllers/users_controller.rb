@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_filter :login_required, :only => [:index, :create, :new]
+
   # GET /users
   # GET /users.json
   def index
@@ -42,15 +44,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
-#    respond_to do |format|
-      if @user.save
-        set_session(@user)
-        redirect_to root_path, notice: 'Successfully signed up!'
-      else
-        render 'new'
- #       format.html { render action: "new" }
- #       format.json { render json: @user.errors, status: :unprocessable_entity }
- #     end
+    if @user.save
+      set_session(@user)
+      redirect_to root_path, notice: 'Successfully signed up!'
+    else
+      render 'new'
     end
   end
 
