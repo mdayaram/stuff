@@ -20,7 +20,20 @@ class ApplicationController < ActionController::Base
   end
 
   def login_required
-    session[:user_id].present?
+    if session[:user_id].present? then true end
+    flash.now[:alert] = 'You gotta log in for that, buddy...'
+    session[:return_to] = request.request_uri
+    redirect_to login_path
+    false
   end
 
+  def redirect_to_stored
+    if return_to = session[:return_to]
+      session[:return_to] = nil
+      redirect_to_url return_to
+    else
+      redirect_to root_path
+    end
+  end
 end
+
