@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   def login_required
     if session[:user_id].present? then return true end
-    flash.now[:alert] = 'You gotta log in for that, buddy...'
+    flash[:alert] = 'You gotta log in for that, buddy...'
     session[:return_to] = request.url
     redirect_to login_path
     return false

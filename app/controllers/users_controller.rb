@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :login_required, :only => [:index, :create, :new]
+  skip_before_filter :login_required, :only => [:create, :new]
 
   # GET /users
   # GET /users.json

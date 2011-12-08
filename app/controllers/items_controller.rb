@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  skip_before_filter :login_required, :only => [:index, :show]
+
   # GET /items
   # GET /items.json
   def index
@@ -41,7 +43,7 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(params[:item])
-
+    @item.submitter = current_user()
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }

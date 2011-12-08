@@ -1,13 +1,13 @@
 Stuff::Application.routes.draw do
  
-  resources :items
 
   get "signup" => "users#new", :as => "signup"
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
-  root :to => "users#index"
+  root :to => "items#index"
   resources :users
   resources :sessions
+  resources :items
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

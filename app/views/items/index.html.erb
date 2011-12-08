@@ -8,9 +8,11 @@
     <th>Description</th>
     <th>Submitted by</th>
     <th>Approved by</th>
-    <th>Cost</th>
+    <th>Purchased by</th>
+    <th>Price</th>
     <th>Status</th>
     <th>Date submitted</th>
+    <th>Date purchased</th>
     <th>Date received</th>
     <th>Date approved</th>
     <th></th>
@@ -21,14 +23,16 @@
 <% @items.each do |item| %>
   <tr>
     <td><%= item.id %></td>
-    <td><%= item.img_url %></td>
+    <td><%= image_tag item.img.url(:small) %></td>
     <td><%= item.title %></td>
     <td><%= item.description %></td>
     <td><%= item.submitted_by %></td>
+    <td><%= item.purchased_by %></td>
     <td><%= item.approved_by %></td>
-    <td><%= item.cost %></td>
+    <td><%= item.price %></td>
     <td><%= item.status %></td>
     <td><%= item.date_submitted %></td>
+    <td><%= item.date_purchased %></td>
     <td><%= item.date_received %></td>
     <td><%= item.date_approved %></td>
     <td><%= link_to 'Show', item %></td>

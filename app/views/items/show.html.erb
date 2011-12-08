@@ -7,7 +7,7 @@
 
 <p>
   <b>Img url:</b>
-  <%= @item.img_url %>
+  <%= image_tag @item.img.url(:large) %>
 </p>
 
 <p>
@@ -31,8 +31,13 @@
 </p>
 
 <p>
+  <b>Purchased by:</b>
+  <%= @item.purchased_by %>
+</p>
+
+<p>
   <b>Cost:</b>
-  <%= @item.cost %>
+  <%= @item.price %>
 </p>
 
 <p>
@@ -43,6 +48,11 @@
 <p>
   <b>Date submitted:</b>
   <%= @item.date_submitted %>
+</p>
+
+<p>
+  <b>Date purchased:</b>
+  <%= @item.date_purchased %>
 </p>
 
 <p>

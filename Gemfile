@@ -35,4 +35,7 @@ end
 # For password encryption
 gem 'bcrypt-ruby', :require => 'bcrypt'
 
+# Image manipulation and storage
+# Requires imagemagick to be installed
+gem "paperclip", "~> 2.4"
 

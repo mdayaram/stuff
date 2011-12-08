@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  has_many :approved_items, :class_name => 'Item', :foreign_key => 'approved_by'
+  has_many :submitted_items, :class_name => 'Item', :foreign_key => 'submitted_by'
+  has_many :purchased_items, :class_name => 'Item', :foreign_key => 'purchased_by'
+
   attr_accessible :username, :full_name, :password, :password_confirmation
   attr_accessor :password
   before_save :set_defaults_and_password
@@ -9,9 +13,9 @@ class User < ActiveRecord::Base
   validates_length_of :username, :within => 3..256
   validates_length_of :full_name, :within => 3..256
   validates_presence_of :username, :full_name
-  validates_inclusion_of :role, :in => User_Roles, :allow_blank => true
-  validates_numericality_of :points, :on => :save
-  validates_numericality_of :points, :on => :update
+  validates_inclusion_of :role, :in => User_Roles.values, :allow_blank => true
+  validates_numericality_of :points, :on => :save, :greater_than_or_equal_to => 0
+  validates_numericality_of :points, :on => :update, :greater_than_or_equal_to => 0
 
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password
