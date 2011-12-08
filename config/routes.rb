@@ -1,5 +1,7 @@
 Stuff::Application.routes.draw do
  
+  resources :items
+
   get "signup" => "users#new", :as => "signup"
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"

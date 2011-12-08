@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  id: 1
+  img_url: MyString
+  title: MyString
+  description: MyString
+  submitted_by: 1
+  approved_by: 1
+  cost: 9.99
+  status: MyString
+  date_submitted: 2011-12-07
+  date_received: 2011-12-07
+  date_approved: 2011-12-07
+
+two:
+  id: 1
+  img_url: MyString
+  title: MyString
+  description: MyString
+  submitted_by: 1
+  approved_by: 1
+  cost: 9.99
+  status: MyString
+  date_submitted: 2011-12-07
+  date_received: 2011-12-07
+  date_approved: 2011-12-07

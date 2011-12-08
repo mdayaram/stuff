@@ -1,0 +1,43 @@
+<h1>Listing items</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Img url</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Submitted by</th>
+    <th>Approved by</th>
+    <th>Cost</th>
+    <th>Status</th>
+    <th>Date submitted</th>
+    <th>Date received</th>
+    <th>Date approved</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @items.each do |item| %>
+  <tr>
+    <td><%= item.id %></td>
+    <td><%= item.img_url %></td>
+    <td><%= item.title %></td>
+    <td><%= item.description %></td>
+    <td><%= item.submitted_by %></td>
+    <td><%= item.approved_by %></td>
+    <td><%= item.cost %></td>
+    <td><%= item.status %></td>
+    <td><%= item.date_submitted %></td>
+    <td><%= item.date_received %></td>
+    <td><%= item.date_approved %></td>
+    <td><%= link_to 'Show', item %></td>
+    <td><%= link_to 'Edit', edit_item_path(item) %></td>
+    <td><%= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Item', new_item_path %>

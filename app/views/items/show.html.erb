@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Id:</b>
+  <%= @item.id %>
+</p>
+
+<p>
+  <b>Img url:</b>
+  <%= @item.img_url %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @item.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @item.description %>
+</p>
+
+<p>
+  <b>Submitted by:</b>
+  <%= @item.submitted_by %>
+</p>
+
+<p>
+  <b>Approved by:</b>
+  <%= @item.approved_by %>
+</p>
+
+<p>
+  <b>Cost:</b>
+  <%= @item.cost %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @item.status %>
+</p>
+
+<p>
+  <b>Date submitted:</b>
+  <%= @item.date_submitted %>
+</p>
+
+<p>
+  <b>Date received:</b>
+  <%= @item.date_received %>
+</p>
+
+<p>
+  <b>Date approved:</b>
+  <%= @item.date_approved %>
+</p>
+
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>
