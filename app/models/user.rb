@@ -23,9 +23,18 @@ class User < ActiveRecord::Base
 
   def self.authenticate (username, password)
     user = User.first :conditions => { :username => username }
-    if (user.blank?) then nil end
+    if (user.blank?) then return nil end
     phash = User.hash_pass(password, user.password_salt);
     phash == user.password_hash ? user : nil
+  end
+
+  def is_admin
+    self.role == User_Roles[:admin] || self.id <= 1
+  end
+
+  def make_admin (user)
+    if self.role != User_Roles[:admin] and self.id > 1 or user.blank? then return false end
+    user.update_attribute(:role, User_Roles[:admin])
   end
 
   private

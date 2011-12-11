@@ -27,6 +27,14 @@ class ApplicationController < ActionController::Base
     return false
   end
 
+  def admin_required
+    if not login_required then return false end
+    if current_user.is_admin then return true end
+    flash[:alert] = "You do not have enough priveledges to do that, buddy..."
+    render :text => "You do not have enough priveledges to do that, buddy...", :status => :forbidden
+    return false
+  end
+
   def redirect_to_stored
     if return_to = session[:return_to]
       session[:return_to] = nil

@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   skip_before_filter :login_required, :only => [:index, :show]
+  before_filter :admin_required, :only => [:edit, :update, :destroy]
 
   # GET /items
   # GET /items.json
@@ -78,10 +79,10 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.purchase(current_user)
-        format.html { redirect_to item_path(@item), notice: 'Item was successfully purchased.' }
+        format.html { redirect_to @item, notice: 'Item was successfully purchased.' }
         format.json { head :ok }
       else 
-        format.html { redirect_to item_path(@item), alert: 'Sorry, item has already been purchased.' }
+        format.html { redirect_to @item, alert: 'Sorry, item has already been purchased.' }
         format.json { render json: {:error => 'Item already purchased'}.json, status: :not_modified }
       end
     end

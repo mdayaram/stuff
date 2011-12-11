@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :login_required, :only => [:create, :new]
+  before_filter :admin_required, :only => [:destroy, :promote, :edit, :update]
 
   # GET /users
   # GET /users.json
@@ -64,6 +65,22 @@ class UsersController < ApplicationController
       else
         format.html { render action: "edit" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /users/1/promote
+  # PUT /users/1/promote.json
+  def promote
+    @user = User.find(params[:id])
+    
+    respond_to do |format|
+      if current_user.make_admin(@user)
+        format.html { redirect_to @user, notice: 'User has been promoted to admin.' }
+        format.json { head :ok }
+      else
+        format.html { redirect_to @user, alert: 'Could not promote user to admin.' }
+        format.json {render json: {:error => 'Could not promote user to admin.' }.json, status: :not_modified }
       end
     end
   end

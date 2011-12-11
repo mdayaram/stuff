@@ -6,7 +6,9 @@ Stuff::Application.routes.draw do
   get "login" => "sessions#new", :as => "login"
   root :to => "items#index"
   
-  resources :users
+  resources :users do
+    put "promote", :on => :member, :as => "promote"
+  end
 
   resources :sessions
   

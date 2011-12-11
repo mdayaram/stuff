@@ -29,14 +29,14 @@ class Item < ActiveRecord::Base
   end
 
   def purchase(user)
-    if user.blank? then false end
+    if user.blank? then return false end
     User.transaction do
       count = Item.update_all(
         { :purchased_by => user.id, :date_purchased => Time.now, :status => Item_Statuses[:purchased] }, 
         { :id => self.id, :status => Item_Statuses[:available] })
       if count == 1
         user.update_attribute(:points, user.points + (self.price * 100))
-      else false end
+      else return false end
     end
   end
 end
