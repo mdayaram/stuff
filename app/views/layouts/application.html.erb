@@ -12,7 +12,7 @@
 <body>
 
 <% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <%= content_tag :div, msg, :id => name %>
 <% end %>
 
 <% if not current_page?(:controller => 'sessions', :action => 'new') and

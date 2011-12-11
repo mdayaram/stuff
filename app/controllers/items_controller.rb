@@ -71,6 +71,22 @@ class ItemsController < ApplicationController
     end
   end
 
+  # PUT /items/1/purchase
+  # PUT /items/1/purchase.json
+  def purchase
+    @item = Item.find(params[:id])
+
+    respond_to do |format|
+      if @item.purchase(current_user)
+        format.html { redirect_to item_path(@item), notice: 'Item was successfully purchased.' }
+        format.json { head :ok }
+      else 
+        format.html { redirect_to item_path(@item), alert: 'Sorry, item has already been purchased.' }
+        format.json { render json: {:error => 'Item already purchased'}.json, status: :not_modified }
+      end
+    end
+  end
+
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy

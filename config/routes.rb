@@ -5,9 +5,15 @@ Stuff::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   root :to => "items#index"
+  
   resources :users
+
   resources :sessions
-  resources :items
+  
+  resources :items do
+    put "purchase", :on => :member, :as => "purchase"
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

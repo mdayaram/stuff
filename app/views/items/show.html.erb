@@ -1,23 +1,19 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Id:</b>
-  <%= @item.id %>
-</p>
-
-<p>
-  <b>Img url:</b>
-  <%= image_tag @item.img.url(:large) %>
-</p>
 
 <p>
   <b>Title:</b>
-  <%= @item.title %>
+  <a href="<%= @item.purchase_url %>">
+    <%= @item.title %>
+  </a>
 </p>
 
 <p>
   <b>Description:</b>
   <%= @item.description %>
+</p>
+
+<p>
+  <b>Img url:</b>
+  <%= image_tag @item.img.url(:large) %>
 </p>
 
 <p>
@@ -65,6 +61,11 @@
   <%= @item.date_approved %>
 </p>
 
+<%= form_for(@item, :url => purchase_item_path(@item), :html => { :method => 'put' }) do |f| %>
+  <div class="actions">
+    <%= f.submit "Purchase"  %>
+  </div>
+<% end %>
 
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>

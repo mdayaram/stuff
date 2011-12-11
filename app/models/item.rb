@@ -18,13 +18,26 @@ class Item < ActiveRecord::Base
     :content_type => ['image/png', 'image/jpeg', 'image/gif', 'image/tiff']
 
   validates_presence_of :title, :description, :submitted_by, :price
-  validates_presence_of :status, :date_submitted
+  validates_presence_of :status, :date_submitted, :purchase_url
   validates_inclusion_of :status, :in => Item_Statuses.values
   validates_numericality_of :price, :greater_than_or_equal_to => 0
+  validates_format_of :purchase_url, :with => URI::regexp(%w(http https))
   
   def set_defaults()
     self.status = Item_Statuses[:available]
     self.date_submitted = Time.now
+  end
+
+  def purchase(user)
+    if user.blank? then false end
+    User.transaction do
+      count = Item.update_all(
+        { :purchased_by => user.id, :date_purchased => Time.now, :status => Item_Statuses[:purchased] }, 
+        { :id => self.id, :status => Item_Statuses[:available] })
+      if count == 1
+        user.update_attribute(:points, user.points + (self.price * 100))
+      else false end
+    end
   end
 end
 
