@@ -63,7 +63,7 @@
 
 <%= form_for(@item, :url => purchase_item_path(@item), :html => { :method => 'put' }) do |f| %>
   <div class="actions">
-    <%= f.submit "Purchase"  %>
+    <%= f.submit "Purchase", :class => "btn"  %>
   </div>
 <% end %>
 

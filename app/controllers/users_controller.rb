@@ -1,37 +1,32 @@
 class UsersController < ApplicationController
-  skip_before_filter :login_required, :only => [:create, :new]
-  before_filter :admin_required, :only => [:destroy, :promote, :edit, :update]
+  skip_before_filter :login_required, :only => [:create, :new, :index]
+  before_filter :admin_required, :only => 
+    [:destroy, :promote, :edit, :update]
 
   # GET /users
-  # GET /users.json
   def index
     @users = User.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @users }
     end
   end
 
   # GET /users/1
-  # GET /users/1.json
   def show
     @user = User.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @user }
     end
   end
 
   # GET /users/new
-  # GET /users/new.json
   def new
     @user = User.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @user }
     end
   end
 
@@ -41,7 +36,6 @@ class UsersController < ApplicationController
   end
 
   # POST /users
-  # POST /users.json
   def create
     @user = User.new(params[:user])
 
@@ -54,46 +48,71 @@ class UsersController < ApplicationController
   end
 
   # PUT /users/1
-  # PUT /users/1.json
   def update
     @user = User.find(params[:id])
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :ok }
       else
         format.html { render action: "edit" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PUT /users/1/promote
-  # PUT /users/1/promote.json
   def promote
     @user = User.find(params[:id])
     
     respond_to do |format|
       if current_user.make_admin(@user)
         format.html { redirect_to @user, notice: 'User has been promoted to admin.' }
-        format.json { head :ok }
       else
         format.html { redirect_to @user, alert: 'Could not promote user to admin.' }
-        format.json {render json: {:error => 'Could not promote user to admin.' }.json, status: :not_modified }
+      end
+    end
+  end
+
+  # GET /users/1/changepass
+  def changepass
+    @user = current_user.dup
+    respond_to do |format|
+      format.html # changepass.html.erb
+    end
+  end
+
+  # PUT /users/1/updatepass
+  def updatepass
+    puser = params[:user]
+    @user = User.authenticate(puser[:username], puser[:password])
+    
+    if @user.blank?
+      @user = current_user.dup
+      @user.errors[:base] << 'Original password was incorrect. Try again?'
+      return respond_to do |format|
+        format.html { render action: "changepass" }
+      end
+    end
+
+    @user.password = puser[:new_password]
+    @user.password_confirmation = puser[:new_password_confirmation]
+
+    respond_to do |format|
+      if @user.update_password
+        format.html { redirect_to @user, notice: 'Password has been updated.'}
+      else
+        format.html { render action: "changepass" }
       end
     end
   end
 
   # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
     @user.destroy
 
     respond_to do |format|
       format.html { redirect_to users_url }
-      format.json { head :ok }
     end
   end
 end

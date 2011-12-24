@@ -37,12 +37,22 @@ class User < ActiveRecord::Base
     user.update_attribute(:role, User_Roles[:admin])
   end
 
+  def update_password
+    set_password()
+    update_attributes(
+      :password_salt => self.password_salt, 
+      :password_hash => self.password_hash)
+  end
+
   private
 
   def set_defaults_and_password
     self.role ||= User_Roles[:standard]
     self.points ||= 0
-    
+    set_password()
+  end
+
+  def set_password
     if self.password.present?
       self.password_salt = User.gen_salt()
       self.password_hash = User.hash_pass(self.password, self.password_salt)

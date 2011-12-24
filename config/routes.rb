@@ -4,6 +4,9 @@ Stuff::Application.routes.draw do
   get "signup" => "users#new", :as => "signup"
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
+  get "changepass" => "users#changepass", :as => "changepass"
+  put "updatepass" => "users#updatepass", :as => "updatepass"
+
   root :to => "items#index"
   
   resources :users do

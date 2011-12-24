@@ -1,0 +1,39 @@
+<h1>Change Password</h1>
+
+<%= form_for(@user, :url => updatepass_path, :html => { :method => 'put' }) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited your password from being updated:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, :readonly => true %>
+  </div>
+  <div class="field">
+    <%= f.label :full_name %><br />
+    <%= f.text_field :full_name, :readonly => true %>
+  </div>
+  <div class="field">
+    <%= f.label "Original Password" %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :new_password %><br />
+    <%= f.password_field :new_password %>
+  </div>
+  <div class="field">
+    <%= f.label :new_password_confirmation %><br />
+    <%= f.password_field :new_password_confirmation %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Update Password", :class => "btn" %>
+  </div>
+<% end %>
