@@ -19,17 +19,19 @@
     <div class="container">
       <h3><%= link_to "Stuff to get Noj", root_path %></h3>
       <ul class="nav">
-        <li><%= link_to "Add Stuff", new_item_path %></li>
-        <li><%= link_to "Link2", "#" %></li>
-        <li><%= link_to "Link2", "#" %></li>
-        <li><%= link_to "Link2", "#" %></li>
-        <li><%= link_to "Link2", "#" %></li>
+        <li><%= link_to "Items", items_path %></li>
+        <li><%= link_to "Prizes", "#" %></li>
+        <li><%= link_to "About", "#" %></li>
       </ul>
       <ul class="nav secondary-nav">
         <% if current_user %>
           <li class="dropdown">
             <%= link_to current_user.full_name, "#", :class => "dropdown-toggle" %>
             <ul class="dropdown-menu">
+              <li><%= link_to "Items Purchased", "#" %></li>
+              <li><%= link_to "Prizes Reedemed", "#" %></li>
+              <li><%= link_to "My Account", "#" %></li>
+              <li class="divider"></li>
               <li><%= link_to "Log out", logout_path %></li>
             </ul>
           </li>

@@ -22,7 +22,11 @@ class Item < ActiveRecord::Base
   validates_inclusion_of :status, :in => Item_Statuses.values
   validates_numericality_of :price, :greater_than_or_equal_to => 0
   validates_format_of :purchase_url, :with => URI::regexp(%w(http https))
-  
+
+  def self.available
+    where(:status => Item_Statuses[:available])
+  end
+
   def set_defaults()
     self.status = Item_Statuses[:available]
     self.date_submitted = Time.now

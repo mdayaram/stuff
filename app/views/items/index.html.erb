@@ -1,25 +1,11 @@
-<h1>Listing items</h1>
+<h1>Available Items</h1>
 
 <table>
-  <tr>
-    <th>Img url</th>
-    <th>Title</th>
-    <th>Price</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% @items.each do |item| %>
   <tr>
-    <td><%= image_tag item.img.url(:small) %></td>
+    <td><%= link_to (image_tag item.img.url(:small)), item %></td>
     <td><%= item.title %></td>
     <td><%= number_to_currency(item.price) %></td>
-    <td><%= item.status %></td>
-    <td><%= link_to 'Show', item %></td>
-    <td><%= link_to 'Edit', edit_item_path(item) %></td>
-    <td><%= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
