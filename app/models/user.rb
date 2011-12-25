@@ -21,6 +21,12 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   validates_length_of :password, :within => 5..128
 
+  scope :top, order('points desc').limit(10)
+
+  def self.top
+    where('points > 0').limit(10).order('points desc')
+  end
+
   def self.authenticate (username, password)
     user = User.first :conditions => { :username => username }
     if (user.blank?) then return nil end

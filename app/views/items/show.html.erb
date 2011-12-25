@@ -1,71 +1,42 @@
 
-<p>
-  <b>Title:</b>
+<div class="item-img">
   <a href="<%= @item.purchase_url %>">
-    <%= @item.title %>
+    <%= image_tag @item.img.url(:large) %>
   </a>
-</p>
+</div>
+
+<div class="item-content">
+
+<h2><%= @item.title %></h2>
 
 <p>
-  <b>Description:</b>
   <%= @item.description %>
 </p>
 
 <p>
-  <b>Img url:</b>
-  <%= image_tag @item.img.url(:large) %>
+  <b>Cost:</b> <%= number_to_currency(@item.price) %><br/>
+  <b>Status:</b> <%= @item.status %><br/>
+  <b>Submitted by:</b> <%= @item.submitter.full_name %><br/>
+<% if @item.purchased_by.present? %>
+  <b>Purchased by:</b> <%= @item.purchaser.full_name %><br/>
+<% end %>
 </p>
 
-<p>
-  <b>Submitted by:</b>
-  <%= @item.submitted_by %>
-</p>
+</div>
 
-<p>
-  <b>Approved by:</b>
-  <%= @item.approved_by %>
-</p>
-
-<p>
-  <b>Purchased by:</b>
-  <%= @item.purchased_by %>
-</p>
-
-<p>
-  <b>Cost:</b>
-  <%= @item.price %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @item.status %>
-</p>
-
-<p>
-  <b>Date submitted:</b>
-  <%= @item.date_submitted %>
-</p>
-
-<p>
-  <b>Date purchased:</b>
-  <%= @item.date_purchased %>
-</p>
-
-<p>
-  <b>Date received:</b>
-  <%= @item.date_received %>
-</p>
-
-<p>
-  <b>Date approved:</b>
-  <%= @item.date_approved %>
-</p>
-
+<div class="item-bottom">
 <%= form_for(@item, :url => purchase_item_path(@item), :html => { :method => 'put' }) do |f| %>
   <div class="actions">
-    <%= f.submit "Purchase", :class => "btn"  %>
+    <% if @item.purchased_by.present? %>
+      <%= f.submit "Purchase", :class => "btn", :disabled => true %>
+    <% else %>
+      <%= f.submit "Purchase", :class => "btn" %>
+    <% end %>
   </div>
 <% end %>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
+<% if current_user.present? and current_user.is_admin %>
+  <%= link_to 'Edit', edit_item_path(@item) %> |
+<% end %>
 <%= link_to 'Back', items_path %>
+</div>

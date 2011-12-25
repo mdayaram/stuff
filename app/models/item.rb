@@ -11,7 +11,7 @@ class Item < ActiveRecord::Base
     :received => 'Received' 
   }
 
-  has_attached_file :img, :styles => { :small => "50x50>", :large => "300x300>" }
+  has_attached_file :img, :styles => { :small => "150x150>", :large => "400x400>" }
   validates_attachment_presence :img
   validates_attachment_size :img, :less_than => 20.megabytes
   validates_attachment_content_type :img, 

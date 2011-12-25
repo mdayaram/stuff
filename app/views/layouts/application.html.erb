@@ -2,8 +2,8 @@
 <html>
 <head>
   <title><%= @title.present? ? @title : 'Stuff to get Noj' %></title>
-  <%= stylesheet_link_tag    "application" %>
   <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+  <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "bootstrap-dropdown" %>
   <%= javascript_include_tag "bootstrap-twipsy" %>
   <%= javascript_include_tag "bootstrap-scrollspy" %>
@@ -48,7 +48,29 @@
   <%= content_tag :div, msg, :class => "alert-message #{name}" %>
 <% end %>
 
-<%= yield %>
+<div class="container">
+<div class="container-fluid">
+  <div class="content">
+    <%= yield %>
+  </div>
+  <div class="sidebar">
+    <h5 align="center">Current Rankings</h5>
+    <div class="rankings">
+      <% if top_users.present? %>
+      <dl>
+      <% top_users.each do |u| %>
+        <dt><%= u.points %></dt>
+        <dd><%= u.username %></dd>
+      <% end %>
+      </dl>
+      <% else %>
+        No top users yet T.T
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
+
 </div>
 
 </body>
