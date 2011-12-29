@@ -1,4 +1,4 @@
-<h1>All Items</h1>
+<h1>Items Already Purchased</h1>
 
 <table>
 <% @items.each do |item| %>
@@ -6,10 +6,14 @@
     <td><%= link_to (image_tag item.img.url(:small)), item %></td>
     <td><%= item.title %></td>
     <td><%= number_to_currency(item.price) %></td>
+    <td>Purchased by <%= item.purchaser.full_name  %></td>
   </tr>
 <% end %>
 </table>
 
+<% if @items.blank? %>
+  <p>No one's bought Manoj anything yet =(</p>
+<% end %>
+
 <br />
 
-<%= link_to 'New Item', new_item_path %>

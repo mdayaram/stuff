@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  skip_before_filter :login_required, :only => [:index, :show]
+  skip_before_filter :login_required, :only => [:index, :show, :available, :purchased]
   before_filter :admin_required, :only => [:edit, :update, :destroy]
 
   # GET /items
@@ -10,6 +10,28 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @items }
+    end
+  end
+
+  # GET /items/available
+  # GET /items/available.json
+  def available
+    @items = Item.available
+
+    respond_to do |format|
+      format.html # available.html.erb
+      format.json { render json: @items }
+    end
+  end
+
+  # GET /items/purchased
+  # GET /items/purchased.json
+  def purchased
+    @items = Item.purchased
+
+    respond_to do |format|
+      format.html # purchased.html.erb
+      format.json { render json: @items}
     end
   end
 

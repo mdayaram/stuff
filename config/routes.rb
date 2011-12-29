@@ -17,6 +17,8 @@ Stuff::Application.routes.draw do
   
   resources :items do
     put "purchase", :on => :member, :as => "purchase"
+    get "available", :on => :collection, :as => "available"
+    get "purchased", :on => :collection, :as => "purchased"
   end
   
   # The priority is based upon order of creation:

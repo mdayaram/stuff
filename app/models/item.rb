@@ -27,6 +27,10 @@ class Item < ActiveRecord::Base
     where(:status => Item_Statuses[:available])
   end
 
+  def self.purchased
+    where(:status => Item_Statuses[:purchased])
+  end
+
   def set_defaults()
     self.status = Item_Statuses[:available]
     self.date_submitted = Time.now
