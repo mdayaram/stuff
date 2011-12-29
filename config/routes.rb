@@ -1,6 +1,7 @@
 Stuff::Application.routes.draw do
  
 
+  get "about" => "static_pages#about", :as => "about"
   get "signup" => "users#new", :as => "signup"
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
