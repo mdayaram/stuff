@@ -7,7 +7,6 @@ gem 'rails', '3.1.0'
 
 gem 'sqlite3'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -37,5 +36,18 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 
 # Image manipulation and storage
 # Requires imagemagick to be installed
-gem "paperclip", "~> 2.4"
+gem 'paperclip', '~> 2.4'
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do 
+  gem 'bootstrap-sass'  # Twitter bootstrap CSS
+end
+
+# Formtastic Gem with alterations that make it
+# play nice with bootstrap css.  In order to
+# activate, need to edit 
+# config/initializers/formtastic.rb with this line:
+# Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
+gem 'formtastic-bootstrap'
 

@@ -2,11 +2,7 @@
 <html>
 <head>
   <title><%= @title.present? ? @title : 'Stuff to get Noj' %></title>
-  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
   <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "bootstrap-dropdown" %>
-  <%= javascript_include_tag "bootstrap-twipsy" %>
-  <%= javascript_include_tag "bootstrap-scrollspy" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= yield(:head) %>
