@@ -22,6 +22,8 @@
         <li class="dropdown">
           <%= link_to "Items", "#", :class => "dropdown-toggle" %>
           <ul class="dropdown-menu">
+            <li><%= link_to "Add New Item", new_item_path %></li>
+            <li class="divider"></li>
             <li><%= link_to "Available Items", available_items_path %></li>
             <li><%= link_to "Already Purchased", purchased_items_path %></li>
           </ul>
@@ -42,8 +44,12 @@
             </ul>
           </li>
         <% else %>
+          <%= form_tag sessions_path do %>
+            <%= text_field_tag :username, "", :placeholder => :username, :class => "small" %>
+            <%= password_field_tag :password, "", :placeholder => :password, :class => "small" %>
+            <%= submit_tag "login", :class => "btn" %>
+          <% end %>
           <li><%= link_to "Sign up", signup_path %></li>
-          <li><%= link_to "Log in", login_path %></li>
         <% end %>
       </ul>
     </div>
