@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password
   validates_length_of :password, :within => 5..128
+  validates_presence_of :password_confirmation
 
   scope :top, order('points desc').limit(10)
 
