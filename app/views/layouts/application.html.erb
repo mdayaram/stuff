@@ -40,10 +40,10 @@
             </ul>
           </li>
         <% else %>
-          <%= form_tag sessions_path do %>
-            <%= text_field_tag :username, "", :placeholder => :username, :class => "small" %>
-            <%= password_field_tag :password, "", :placeholder => :password, :class => "small" %>
-            <%= submit_tag "login", :class => "btn" %>
+          <%= form_for(Session.new, :namespace => 'login_form') do |f| %>
+            <%= f.text_field :username, :placeholder => 'username', :class => 'small' %>
+            <%= f.password_field :password, :placeholder => 'password', :class => 'small' %>
+            <%= f.submit "login" %>
           <% end %>
           <li><%= link_to "Sign up", signup_path %></li>
         <% end %>
