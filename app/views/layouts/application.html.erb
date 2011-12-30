@@ -44,6 +44,7 @@
           <%= form_for(Session.new, :namespace => 'login_form') do |f| %>
             <%= f.text_field :username, :placeholder => 'username', :class => 'small' %>
             <%= f.password_field :password, :placeholder => 'password', :class => 'small' %>
+            <%= hidden_field_tag :return_to, url_for  %>
             <%= f.submit "login" %>
           <% end %>
           <li><%= link_to "sign up", signup_path %></li>

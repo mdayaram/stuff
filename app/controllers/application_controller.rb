@@ -41,7 +41,9 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_stored
-    if return_to = session[:return_to]
+    return_to = session[:return_to]
+    if return_to.blank? then return_to = params[:return_to] end
+    if return_to.present?
       session[:return_to] = nil
       redirect_to return_to
     else
