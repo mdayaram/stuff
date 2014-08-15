@@ -1,0 +1,97 @@
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	version="2.4">
+
+	<display-name>Stuff To Get Noj</display-name>
+	
+	<servlet>
+	
+		<servlet-name>
+			controller
+		</servlet-name>
+	
+		<servlet-class>
+			cc.noj.stufftoget.controller.ControllerServlet
+		</servlet-class>
+			
+		<init-param>
+			<param-name>	jdbcDriverName			</param-name>
+			<param-value>	com.mysql.jdbc.Driver	</param-value>
+		</init-param>
+		<init-param>
+			<param-name>	jdbcURL					</param-name>
+			<param-value>	jdbc:mysql:///webapp?autoReconnect=true	</param-value>
+		</init-param>
+		<init-param>
+			<param-name>	user_table			</param-name>
+			<param-value>	noj_user		</param-value>
+		</init-param>
+		<init-param>
+			<param-name>	item_table			</param-name>
+			<param-value>	noj_item		</param-value>
+		</init-param>
+		<init-param>
+			<param-name>	coupon_table		</param-name>
+			<param-value>	noj_coupon		</param-value>
+		</init-param>
+		<init-param>
+			<param-name>	prizes_table		</param-name>
+			<param-value>	noj_prizes		</param-value>
+		</init-param>
+		<init-param>
+			<param-name>	redeemed_table		</param-name>
+			<param-value>	noj_redeemed	</param-value>
+		</init-param>
+		<init-param>
+			<param-name>	photo_table		</param-name>
+			<param-value>	noj_photos	</param-value>
+		</init-param>
+		
+		<init-param>
+			<param-name>	noj_email			</param-name>
+			<param-value>	i.am.noj@gmail.com	</param-value>
+		</init-param>
+		<init-param>
+			<param-name>	noj_firstname		</param-name>
+			<param-value>	noj					</param-value>
+		</init-param>
+		<init-param>
+			<param-name>	noj_lastname		</param-name>
+			<param-value>	 					</param-value>
+		</init-param>
+		<init-param>
+			<param-name>	noj_pass			</param-name>
+			<param-value>	passkey				</param-value>
+		</init-param>
+		
+	</servlet>
+	
+	<servlet>
+		<servlet-name>
+			image-servlet
+		</servlet-name>
+		<servlet-class>	
+			cc.noj.stufftoget.view.ImageServlet
+		</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>		controller		</servlet-name>
+		<url-pattern>		/start			</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>		controller		</servlet-name>
+		<url-pattern>		*.do			</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>		image-servlet	</servlet-name>
+		<url-pattern>		/image			</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>		start			</welcome-file>
+	</welcome-file-list>
+</web-app>

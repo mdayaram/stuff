@@ -1,16 +1,14 @@
-*.rbc
-*.sassc
-.sass-cache
-capybara-*.html
-.rspec
-/.bundle
-/vendor/bundle
-/log/*
-/tmp/*
-/db/*.sqlite3
-/public/system/*
-/coverage/
-/spec/tmp/*
-**.orig
-rerun.txt
-pickle-email-*.html
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# mvn build directory #
+target/
+
+# eclipse meta files #
+.classpath
+.project
+.settings/

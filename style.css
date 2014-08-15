@@ -1,0 +1,75 @@
+#top { 
+	position: relative;
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#header {
+	position: relative;
+}
+
+#title { }
+
+#loginreg {
+	position: absolute;
+	top: 15px;
+	right: 5px;
+	width: 200px;
+	font-family: Verdana;
+	font-size: 10pt;
+}
+
+#menu { 
+	position: relative;
+	top: 35px;
+	height: 80px;
+}
+
+#menu .menu {
+	width: 160px;
+	text-align: center;
+	font-family: Verdana;
+	font-size: 10pt;
+	float: left
+}
+
+#mid {
+	position: relative;
+	width: 760px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#body {
+	float: left;
+	width: 540px;
+}
+
+#topten {
+	float: right;
+	width: 220px;
+}
+
+#topten h4 {
+	font-family: Verdana;
+	font-size: 10pt;
+	text-align: center;
+}
+
+#topten ol li {
+	font-family: Verdana;
+	font-size: 10pt;
+}
+
+#footer {
+	font-family: Verdana;
+	font-size: 8pt;
+	clear: both;
+	text-align: center;
+}
+
+td {
+	font-family: Verdana;
+	font-size: 10pt;
+}
