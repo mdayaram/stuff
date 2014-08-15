@@ -10,8 +10,10 @@ that I only did the bare minimum in terms of requirements.  After me nodding and
 him sighing, he took a lot at the source files.
 
 Prof: "Let's sort these by date...so it seems the oldest file here is just a day old!"
+
 Me: "Um..yeah...I had some computer troubles, so I had to transfer things over
 from a backup yesterday..."
+
 Prof: "Roight..."
 
 
