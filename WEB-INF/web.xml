@@ -19,12 +19,10 @@
 			<param-name>	jdbcDriverName			</param-name>
 			<param-value>	com.mysql.jdbc.Driver	</param-value>
 		</init-param>
-		<!-- This is done in code to retrieve environment variable.
 		<init-param>
 			<param-name>	jdbcURL					</param-name>
 			<param-value>	jdbc:mysql:///webapp?autoReconnect=true	</param-value>
 		</init-param>
-		-->
 		<init-param>
 			<param-name>	user_table			</param-name>
 			<param-value>	noj_user		</param-value>

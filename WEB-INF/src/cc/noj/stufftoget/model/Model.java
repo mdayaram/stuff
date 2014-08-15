@@ -1,5 +1,6 @@
 package cc.noj.stufftoget.model;
 
+import java.net.URI;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 
@@ -19,10 +20,13 @@ public class Model {
 
 	public Model(ServletConfig config) throws ServletException{
 		String jdbcDriver = config.getInitParameter("jdbcDriverName");
+		// Heroku gets database URL from the environment...
 		//String jdbcURL    = config.getInitParameter("jdbcURL");
-		//For Heroku we use the environment variable.
-		String jdbcURL = System.getenv("CLEARDB_DATABASE_URL");
-		BeanTable.useJDBC(jdbcDriver,jdbcURL);
+		URI dbUri = new URI(System.getenv("DATABASE_URL"));
+		String jdbcURL = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
+		String username = dbUri.getUserInfo().split(":")[0];
+		String password = dbUri.getUserInfo().split(":")[1];
+		BeanTable.useJDBC(jdbcDriver,jdbcURL,username,password);
 		
 		String userTableName = config.getInitParameter("user_table");
 		String itemTableName = config.getInitParameter("item_table");
@@ -40,7 +44,7 @@ public class Model {
 			myRedeemedDAO = new RedeemedPrizesDAO(redeemedTableName);
 			myPhotoDAO = new PhotoDAO(photoTableName);
 		} catch (DAOException e){
-			throw new ServletException(e);
+			throw new ServletException("jdbcURL: " + jdbcURL);
 		}
 		
 		try {
