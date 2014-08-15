@@ -1,8 +1,9 @@
 Stuff to Get Noj
 ================
 
-This was my final project website for 15-437 Web Application Development.  It's
-basically a site where you can post things to get me and also get them for me!
+This was my final project website for 15-437 Web Application Development (2010).
+It's basically a site where you can post things to get me and also get them for
+me!
 
 Funny story: I built this entire site the day before it was due.  During the
 final review of this site, my professor took a quick look at it and pointed out
