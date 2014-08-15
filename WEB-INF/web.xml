@@ -17,7 +17,7 @@
 			
 		<init-param>
 			<param-name>	jdbcDriverName			</param-name>
-			<param-value>	org.postgresql.Driver	</param-value>
+			<param-value>	com.mysql.jdbc.Driver	</param-value>
 		</init-param>
 		<!-- This is done in code to retrieve environment variable.
 		<init-param>

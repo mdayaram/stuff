@@ -21,7 +21,7 @@ public class Model {
 		String jdbcDriver = config.getInitParameter("jdbcDriverName");
 		//String jdbcURL    = config.getInitParameter("jdbcURL");
 		//For Heroku we use the environment variable.
-		String jdbcURL = System.getenv("DATABASE_URL");
+		String jdbcURL = System.getenv("CLEARDB_DATABASE_URL");
 		BeanTable.useJDBC(jdbcDriver,jdbcURL);
 		
 		String userTableName = config.getInitParameter("user_table");
