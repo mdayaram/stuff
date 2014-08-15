@@ -18,3 +18,6 @@ from a backup yesterday..."
 Prof: "Roight..."
 
 
+Took me a good night, but I got it back up here:  http://stuff.hazasite.com
+
+Unfortunately, I lost the data from back when I hosted it in college, so this version is rather bare.
