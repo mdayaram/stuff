@@ -19,7 +19,9 @@ public class Model {
 
 	public Model(ServletConfig config) throws ServletException{
 		String jdbcDriver = config.getInitParameter("jdbcDriverName");
-		String jdbcURL    = config.getInitParameter("jdbcURL");
+		//String jdbcURL    = config.getInitParameter("jdbcURL");
+		//For Heroku we use the environment variable.
+		String jdbcURL = System.getenv("DATABASE_URL");
 		BeanTable.useJDBC(jdbcDriver,jdbcURL);
 		
 		String userTableName = config.getInitParameter("user_table");
