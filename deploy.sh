@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo "Creating WAR package..."
+rm -rf target
 mkdir target
 jar cvf target/project.war .
 if [ $? != 0 ]; then
