@@ -12,7 +12,7 @@ fi
 echo "Creating WAR package..."
 rm -rf target
 mkdir target
-jar cvf target/project.war .
+jar cvf target/project.war $(find . | grep -v "\.git" | sed '1d')
 if [ $? != 0 ]; then
 	echo "Couldn't create WAR package."
 	exit 1
